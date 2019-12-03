@@ -6,7 +6,7 @@
       "schematics": {},
       "root": "apps/igx-select-test",
       "sourceRoot": "apps/igx-select-test/src",
-      "prefix": "nx-igx-select-test",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -21,7 +21,11 @@
               "apps/igx-select-test/src/favicon.ico",
               "apps/igx-select-test/src/assets"
             ],
-            "styles": ["apps/igx-select-test/src/styles.css"],
+            "styles": [
+              "node_modules/minireset.css/minireset.css",
+              "apps/igx-select-test/src/styles.css",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -80,7 +84,10 @@
               "apps/igx-select-test/tsconfig.app.json",
               "apps/igx-select-test/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/igx-select-test/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igx-select-test/**"
+            ]
           }
         },
         "test": {
@@ -88,7 +95,10 @@
           "options": {
             "jestConfig": "apps/igx-select-test/jest.config.js",
             "tsConfig": "apps/igx-select-test/tsconfig.spec.json",
-            "setupFile": "apps/igx-select-test/src/test-setup.ts"
+            "setupFile": "apps/igx-select-test/src/test-setup.ts",
+            "styles": [
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
+            ]
           }
         }
       }
@@ -114,8 +124,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/igx-select-test-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/igx-select-test-e2e/**"]
+            "tsConfig": [
+              "apps/igx-select-test-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/igx-select-test-e2e/**"
+            ]
           }
         }
       }

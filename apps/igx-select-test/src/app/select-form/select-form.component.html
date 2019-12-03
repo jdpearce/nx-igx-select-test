@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  <igx-select #select name="selectThing" formControlName="selectThing">
+    <igx-select-item *ngFor="let thing of things" [value]="thing">
+      {{ thing.name }}
+    </igx-select-item>
+    <label igxLabel for="selectThing">Select Thing</label>
+  </igx-select>
+
+  <p class="alert alert-danger" role="alert" *ngIf="selectThingControl.invalid">
+    Thing is required.
+  </p>
+</form>
