@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "projects": {
+    "igx-select-test": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/igx-select-test",
+      "sourceRoot": "apps/igx-select-test/src",
+      "prefix": "nx-igx-select-test",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/igx-select-test",
+            "index": "apps/igx-select-test/src/index.html",
+            "main": "apps/igx-select-test/src/main.ts",
+            "polyfills": "apps/igx-select-test/src/polyfills.ts",
+            "tsConfig": "apps/igx-select-test/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/igx-select-test/src/favicon.ico",
+              "apps/igx-select-test/src/assets"
+            ],
+            "styles": ["apps/igx-select-test/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/igx-select-test/src/environments/environment.ts",
+                  "with": "apps/igx-select-test/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "igx-select-test:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "igx-select-test:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "igx-select-test:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/igx-select-test/tsconfig.app.json",
+              "apps/igx-select-test/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/igx-select-test/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/igx-select-test/jest.config.js",
+            "tsConfig": "apps/igx-select-test/tsconfig.spec.json",
+            "setupFile": "apps/igx-select-test/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "igx-select-test-e2e": {
+      "root": "apps/igx-select-test-e2e",
+      "sourceRoot": "apps/igx-select-test-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/igx-select-test-e2e/cypress.json",
+            "tsConfig": "apps/igx-select-test-e2e/tsconfig.e2e.json",
+            "devServerTarget": "igx-select-test:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "igx-select-test:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/igx-select-test-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/igx-select-test-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "igx-select-test"
+}
